@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="yLorde" />
+  <meta name="description"
+    content="Guia oficial do easy-api-consumer — cliente HTTP TypeScript com autenticação, utilitários de dispositivo e uma camada de API reutilizável." />
+  <title>easy-api-consumer Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script>
+    const redirect = sessionStorage.getItem("redirect");
+    if (redirect && redirect !== "/" && redirect !== "/index.html") {
+      sessionStorage.removeItem("redirect");
+      window.history.replaceState(null, "", redirect);
+    }
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
+</html>

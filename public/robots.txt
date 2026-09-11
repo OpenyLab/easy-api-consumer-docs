@@ -1,0 +1,5 @@
+Sitemap: https://eac.ylorde.com.br/sitemap.xml
+
+User-agent: *
+
+Allow: /
