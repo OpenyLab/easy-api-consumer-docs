@@ -12,6 +12,7 @@ export function HelpersPage() {
       toc={[
         { id: "funcoes", title: "Funções" },
         { id: "exemplo", title: "Exemplo" },
+        { id: "seguranca", title: "Chaves perigosas" },
       ]}
     >
       <HeadingAnchor id="funcoes">Funções</HeadingAnchor>
@@ -29,6 +30,9 @@ export function HelpersPage() {
         </OptionRow>
         <OptionRow name="transformKeys" type="(obj, transform) => unknown">
           Percorre a estrutura com a função de transformação que você passar.
+          Chaves <InlineCode>__proto__</InlineCode>,{" "}
+          <InlineCode>constructor</InlineCode> e <InlineCode>prototype</InlineCode>{" "}
+          são ignoradas.
         </OptionRow>
         <OptionRow name="ensureArray" type="<T>(value) => T[]">
           Normaliza <InlineCode>null</InlineCode>, um item ou uma lista para sempre
@@ -46,6 +50,14 @@ functions.toCamelCase({ user_name: "ada" });
 functions.ensureArray("ok");
 // ["ok"]`}
       />
+
+      <HeadingAnchor id="seguranca">Chaves perigosas</HeadingAnchor>
+      <p>
+        A 1.3.0 filtra Prototype Pollution na transformação recursiva. Payloads com{" "}
+        <InlineCode>__proto__</InlineCode>, <InlineCode>constructor</InlineCode> ou{" "}
+        <InlineCode>prototype</InlineCode> não replicam essas chaves no objeto
+        resultante.
+      </p>
     </DocArticle>
   );
 }

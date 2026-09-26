@@ -41,14 +41,16 @@ await api.delete("/users/1");`}
       <HeadingAnchor id="retry">Retry de barra</HeadingAnchor>
       <p>
         Se a resposta for <InlineCode>404</InlineCode> ou{" "}
-        <InlineCode>405</InlineCode> e o path começar com <InlineCode>/</InlineCode>,
-        o client tenta de novo usando o path relativo — a menos que{" "}
+        <InlineCode>405</InlineCode>, o path começar com <InlineCode>/</InlineCode>{" "}
+        e o método for idempotente (<InlineCode>GET</InlineCode>,{" "}
+        <InlineCode>HEAD</InlineCode> ou <InlineCode>OPTIONS</InlineCode>), o client
+        tenta de novo com o path relativo — a menos que{" "}
         <InlineCode>skipSlashRetry</InlineCode> esteja ativo.
       </p>
       <Callout tone="warn">
-        Esse retry existe para APIs exigentes com a barra final. Se o seu backend
-        já é consistente, desligue com <InlineCode>skipSlashRetry: true</InlineCode>{" "}
-        para evitar uma request extra.
+        POST, PUT, PATCH e DELETE não entram nesse retry, para não repetir mutações.
+        Se o backend já trata barra de forma consistente, use{" "}
+        <InlineCode>skipSlashRetry: true</InlineCode> também nos GET.
       </Callout>
     </DocArticle>
   );

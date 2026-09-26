@@ -13,6 +13,7 @@ export function AuthenticatedRequestsPage() {
         { id: "ligar-desligar", title: "Ligar e desligar" },
         { id: "noauth", title: "noAuth" },
         { id: "unauthorized", title: "Evento 401" },
+        { id: "cookies", title: "Cookies" },
       ]}
     >
       <HeadingAnchor id="ligar-desligar">Ligar e desligar</HeadingAnchor>
@@ -50,6 +51,15 @@ api.post("/auth/login", body, { auth: false });`}
         Use <InlineCode>silent401: true</InlineCode> em health checks ou tentativas
         de refresh para não deslogar o usuário no primeiro 401.
       </Callout>
+
+      <HeadingAnchor id="cookies">Cookies</HeadingAnchor>
+      <p>
+        O header Bearer e os cookies são independentes. O padrão{" "}
+        <InlineCode>same-origin</InlineCode> não envia cookies para outro domínio.
+        Sessão via cookie em API cruzada exige{" "}
+        <InlineCode>credentials: &quot;include&quot;</InlineCode> e CORS no backend
+        com <InlineCode>Access-Control-Allow-Credentials</InlineCode>.
+      </p>
     </DocArticle>
   );
 }

@@ -10,6 +10,8 @@ export function ExamplesPage() {
       toc={[
         { id: "auth-api", title: "authApi" },
         { id: "ui", title: "Na interface" },
+        { id: "cache", title: "Cache" },
+        { id: "cookies", title: "Cookies cross-origin" },
       ]}
     >
       <HeadingAnchor id="auth-api">authApi</HeadingAnchor>
@@ -51,6 +53,25 @@ async function onSubmit(email: string, password: string) {
 
   return authApi.me();
 }`}
+      />
+
+      <HeadingAnchor id="cache">Cache</HeadingAnchor>
+      <CodeBlock
+        filename="@/lib/endpoints/catalog.ts"
+        code={`export const catalogApi = {
+  categories: () =>
+    api.get("/categories", {
+      useCache: true,
+      maxCacheAge: 60_000,
+    }),
+};`}
+      />
+
+      <HeadingAnchor id="cookies">Cookies cross-origin</HeadingAnchor>
+      <CodeBlock
+        code={`api.get("/auth/me", {
+  credentials: "include",
+});`}
       />
     </DocArticle>
   );

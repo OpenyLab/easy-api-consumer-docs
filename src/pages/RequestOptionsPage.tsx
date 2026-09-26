@@ -13,6 +13,7 @@ export function RequestOptionsPage() {
       toc={[
         { id: "opcoes", title: "Campos" },
         { id: "body", title: "Serialização do body" },
+        { id: "credentials", title: "Credentials" },
       ]}
     >
       <HeadingAnchor id="opcoes">Campos</HeadingAnchor>
@@ -46,14 +47,27 @@ export function RequestOptionsPage() {
           Envia o body sem transformação de chaves.
         </OptionRow>
         <OptionRow name="skipSlashRetry" type="boolean" defaultValue="false">
-          Desliga a segunda tentativa em 404/405.
+          Desliga a segunda tentativa em 404/405. Esse retry só ocorre em GET,
+          HEAD e OPTIONS.
         </OptionRow>
         <OptionRow name="includesDeviceType" type="boolean">
           Adiciona o header <InlineCode>device-type</InlineCode>.
         </OptionRow>
         <OptionRow name="includesDeviceIpAddress" type="boolean">
-          Adiciona o header <InlineCode>device-ip-address</InlineCode> com o IPv4
-          público.
+          Adiciona o header <InlineCode>device-ip-address</InlineCode> com o IP
+          público validado (IPv4 ou IPv6).
+        </OptionRow>
+        <OptionRow name="useCache" type="boolean" defaultValue="false">
+          Grava a resposta JSON no <InlineCode>sessionStorage</InlineCode>. Não use
+          com dados sensíveis.
+        </OptionRow>
+        <OptionRow name="maxCacheAge" type="number" defaultValue="15000">
+          Validade do cache em milissegundos quando{" "}
+          <InlineCode>useCache</InlineCode> está ligado.
+        </OptionRow>
+        <OptionRow name="credentials" type="RequestCredentials" defaultValue='"same-origin"'>
+          Política de cookies da <InlineCode>fetch</InlineCode>.{" "}
+          <InlineCode>include</InlineCode> envia cookies em origem cruzada.
         </OptionRow>
       </div>
 
@@ -73,6 +87,18 @@ export function RequestOptionsPage() {
         <InlineCode>Content-Type</InlineCode> forçado, para o browser definir o
         boundary.
       </Callout>
+
+      <HeadingAnchor id="credentials">Credentials</HeadingAnchor>
+      <p>
+        Desde a 1.3.0 o padrão é <InlineCode>same-origin</InlineCode>. Front e API
+        no mesmo site continuam enviando cookies. API em outro domínio precisa de
+        configuração explícita:
+      </p>
+      <CodeBlock
+        code={`await api.get("/profile", {
+  credentials: "include",
+});`}
+      />
     </DocArticle>
   );
 }

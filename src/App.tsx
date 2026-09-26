@@ -6,6 +6,7 @@ import { GettingStartedPage } from "@/pages/GettingStartedPage";
 import { ConfigurationPage } from "@/pages/ConfigurationPage";
 import { HttpClientPage } from "@/pages/HttpClientPage";
 import { RequestOptionsPage } from "@/pages/RequestOptionsPage";
+import { CachePage } from "@/pages/CachePage";
 import { AuthenticationPage } from "@/pages/AuthenticationPage";
 import { AuthenticatedRequestsPage } from "@/pages/AuthenticatedRequestsPage";
 import { DevicePage } from "@/pages/DevicePage";
@@ -13,6 +14,7 @@ import { HelpersPage } from "@/pages/HelpersPage";
 import { ApiReferencePage } from "@/pages/ApiReferencePage";
 import { ErrorsPage } from "@/pages/ErrorsPage";
 import { ExamplesPage } from "@/pages/ExamplesPage";
+import { ChangelogPage } from "@/pages/ChangelogPage";
 import { CreditsPage } from "@/pages/CreditsPage";
 
 const router = createBrowserRouter([
@@ -26,6 +28,7 @@ const router = createBrowserRouter([
       { path: "configuration", element: <ConfigurationPage /> },
       { path: "http-client", element: <HttpClientPage /> },
       { path: "request-options", element: <RequestOptionsPage /> },
+      { path: "cache", element: <CachePage /> },
       { path: "authentication", element: <AuthenticationPage /> },
       { path: "authenticated-requests", element: <AuthenticatedRequestsPage /> },
       { path: "device", element: <DevicePage /> },
@@ -33,6 +36,7 @@ const router = createBrowserRouter([
       { path: "api-reference", element: <ApiReferencePage /> },
       { path: "errors", element: <ErrorsPage /> },
       { path: "examples", element: <ExamplesPage /> },
+      { path: "changelog", element: <ChangelogPage /> },
       { path: "credits", element: <CreditsPage /> },
       { path: "*", element: <Navigate to="/" replace /> },
     ],
