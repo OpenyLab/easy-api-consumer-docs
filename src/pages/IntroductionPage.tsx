@@ -18,8 +18,9 @@ export function IntroductionPage() {
     >
       <p>
         O <InlineCode>easy-api-consumer</InlineCode> é uma biblioteca Node.js / browser
-        para requests HTTP, gestão de token Bearer, headers de dispositivo e uma API
-        tipada que você organiza por domínio — login, perfil, recursos — sem duplicar
+        para requests HTTP, gestão de token Bearer, headers de dispositivo, cache
+        opcional no <InlineCode>sessionStorage</InlineCode> e uma API tipada que você
+        organiza por domínio — login, perfil, recursos — sem duplicar{" "}
         <InlineCode>fetch</InlineCode>.
       </p>
 
@@ -29,6 +30,7 @@ export function IntroductionPage() {
         <li>Como agrupar endpoints em objetos reutilizáveis;</li>
         <li>Como ligar e desligar autenticação por request;</li>
         <li>Como enviar tipo de dispositivo e IP nos headers;</li>
+        <li>Como cachear respostas JSON na aba e quando não fazer isso;</li>
         <li>Como tratar <InlineCode>401</InlineCode>, timeouts e <InlineCode>ApiError</InlineCode>.</li>
       </ul>
 
@@ -36,8 +38,9 @@ export function IntroductionPage() {
       <p>
         Você precisa de TypeScript (ou JavaScript moderno) e de um runtime com{" "}
         <InlineCode>fetch</InlineCode> — browsers atuais ou Node 18+. O token de
-        autenticação vive em <InlineCode>localStorage</InlineCode>, então o fluxo
-        autenticado é pensado principalmente para o cliente.
+        autenticação vive em <InlineCode>localStorage</InlineCode> e o cache, quando
+        ligado, em <InlineCode>sessionStorage</InlineCode> — o fluxo autenticado e o
+        cache são pensados principalmente para o cliente.
       </p>
       <p>
         O pacote está publicado no{" "}
@@ -55,6 +58,12 @@ export function IntroductionPage() {
         </FeatureCard>
         <FeatureCard title="Autenticação" href="/authentication">
           Salve, leia e limpe o Bearer token com os helpers oficiais.
+        </FeatureCard>
+        <FeatureCard title="Cache" href="/cache">
+          Respostas JSON no sessionStorage, com validade e limpeza por prefixo.
+        </FeatureCard>
+        <FeatureCard title="Versão 1.3.0" href="/changelog">
+          Breaking changes de credentials, tipagem estrita e hardening.
         </FeatureCard>
         <FeatureCard title="API Reference" href="/api-reference">
           Superfície completa da classe, opções e utilitários.

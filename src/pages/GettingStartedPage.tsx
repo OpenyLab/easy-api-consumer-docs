@@ -62,8 +62,8 @@ export {
 };`}
       />
       <Callout>
-        A classe centraliza configuração, token e utilitários de dispositivo. Você
-        não precisa importar cada helper de um caminho interno do pacote.
+        A classe centraliza configuração, token, cache e utilitários de dispositivo.
+        Você não precisa importar cada helper de um caminho interno do pacote.
       </Callout>
 
       <HeadingAnchor id="endpoints">3. Agrupe os endpoints</HeadingAnchor>
@@ -111,7 +111,10 @@ const login = async () => {
       <p>
         Esse recorte mantém a camada HTTP isolada da UI. Quando a API crescer, você
         só adiciona outro objeto — <InlineCode>usersApi</InlineCode>,{" "}
-        <InlineCode>ordersApi</InlineCode> — reusando o mesmo client.
+        <InlineCode>ordersApi</InlineCode> — reusando o mesmo client. Na 1.3.0, GET
+        de catálogo pode usar <InlineCode>useCache</InlineCode>; APIs em outro
+        domínio que dependem de cookie precisam de{" "}
+        <InlineCode>credentials: &quot;include&quot;</InlineCode>.
       </p>
     </DocArticle>
   );

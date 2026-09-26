@@ -43,10 +43,11 @@ export function ConfigurationPage() {
           o body é <InlineCode>FormData</InlineCode>
         </li>
       </ul>
-      <Callout tone="tip">
-        Cookies de sessão também seguem junto: o client usa{" "}
-        <InlineCode>credentials: &quot;include&quot;</InlineCode> em paralelo ao
-        header Bearer.
+      <Callout tone="warn" title="Cookies (1.3.0)">
+        O padrão passou a ser <InlineCode>credentials: &quot;same-origin&quot;</InlineCode>.
+        Cookies de outra origem não saem mais sozinhos. Para sessão cross-origin,
+        use <InlineCode>credentials: &quot;include&quot;</InlineCode> na request — veja
+        a página de opções e o guia da versão 1.3.0.
       </Callout>
     </DocArticle>
   );

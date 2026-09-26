@@ -33,9 +33,10 @@ token.clearAuthToken();`}
         Qualquer outra aba da mesma origem enxerga o mesmo token.
       </p>
       <Callout tone="warn">
-        <InlineCode>localStorage</InlineCode> é acessível a scripts da página.
-        Não use este padrão para tokens de longa duração se o app estiver sujeito a
-        XSS. Prefira cookies HttpOnly no backend quando o risco for alto.
+        <InlineCode>localStorage</InlineCode> é acessível a scripts da página. Um
+        XSS lê o Bearer. Não use este padrão para tokens de longa duração; no
+        backend, prefira cookies HttpOnly. A 1.3.0 deixa esse aviso no JSDoc de{" "}
+        <InlineCode>setAuthToken</InlineCode>.
       </Callout>
     </DocArticle>
   );

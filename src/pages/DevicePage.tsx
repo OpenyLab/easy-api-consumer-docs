@@ -36,8 +36,10 @@ export function DevicePage() {
       <HeadingAnchor id="ip">IP address</HeadingAnchor>
       <p>
         <InlineCode>getDeviceIpAddress()</InlineCode> consulta{" "}
-        <InlineCode>https://api.ipify.org/?format=json</InlineCode>. Se a chamada
-        falhar, retorna <InlineCode>::1</InlineCode>.
+        <InlineCode>https://api.ipify.org/?format=json</InlineCode> com timeout de
+        5 segundos. Só devolve o valor se ele passar na regex de IPv4 ou IPv6. Em
+        timeout, status diferente de 200, formato inválido ou falha de rede, retorna{" "}
+        <InlineCode>::1</InlineCode> e não propaga lixo no header.
       </p>
       <CodeBlock
         code={`api.post("/auth/login", body, {

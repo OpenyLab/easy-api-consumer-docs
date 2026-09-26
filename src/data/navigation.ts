@@ -29,6 +29,7 @@ export const navigation: NavSection[] = [
         items: [
           { kind: "link", title: "Métodos", href: "/http-client" },
           { kind: "link", title: "Opções de request", href: "/request-options" },
+          { kind: "link", title: "Cache", href: "/cache" },
         ],
       },
       {
@@ -60,6 +61,7 @@ export const navigation: NavSection[] = [
   {
     label: "Projeto",
     items: [
+      { kind: "link", title: "Versão 1.3.0", href: "/changelog" },
       { kind: "link", title: "Licença e créditos", href: "/credits" },
     ],
   },
@@ -72,6 +74,7 @@ export const pageOrder = [
   "/configuration",
   "/http-client",
   "/request-options",
+  "/cache",
   "/authentication",
   "/authenticated-requests",
   "/device",
@@ -79,6 +82,7 @@ export const pageOrder = [
   "/api-reference",
   "/errors",
   "/examples",
+  "/changelog",
   "/credits",
 ] as const;
 
@@ -89,6 +93,7 @@ export const pageTitles: Record<string, string> = {
   "/configuration": "Configuração",
   "/http-client": "Métodos HTTP",
   "/request-options": "Opções de request",
+  "/cache": "Cache",
   "/authentication": "Tokens",
   "/authenticated-requests": "Requests autenticadas",
   "/device": "Dispositivo",
@@ -96,6 +101,7 @@ export const pageTitles: Record<string, string> = {
   "/api-reference": "API Reference",
   "/errors": "Erros",
   "/examples": "Exemplos",
+  "/changelog": "Versão 1.3.0",
   "/credits": "Licença e créditos",
 };
 
@@ -104,13 +110,13 @@ export const searchIndex: SearchEntry[] = [
     title: "Introdução",
     href: "/",
     section: "Guia",
-    keywords: "easy-api-consumer http client typescript autenticação",
+    keywords: "easy-api-consumer http client typescript autenticação cache",
   },
   {
     title: "Instalação",
     href: "/installation",
     section: "Começando",
-    keywords: "npm install yarn pnpm",
+    keywords: "npm install yarn pnpm 1.3.0",
   },
   {
     title: "Início rápido",
@@ -122,49 +128,55 @@ export const searchIndex: SearchEntry[] = [
     title: "Configuração",
     href: "/configuration",
     section: "Começando",
-    keywords: "baseURL IApiConfig",
+    keywords: "baseURL IApiConfig credentials same-origin",
   },
   {
     title: "Métodos HTTP",
     href: "/http-client",
     section: "Cliente HTTP",
-    keywords: "get post put patch delete request",
+    keywords: "get post put patch delete request skipSlashRetry",
   },
   {
     title: "Opções de request",
     href: "/request-options",
     section: "Cliente HTTP",
-    keywords: "auth timeout camelCase bodyAsIs headers signal silent401",
+    keywords: "auth timeout camelCase bodyAsIs headers signal silent401 useCache credentials",
+  },
+  {
+    title: "Cache",
+    href: "/cache",
+    section: "Cliente HTTP",
+    keywords: "sessionStorage useCache maxCacheAge clearAll eac:cache ICacheEntry",
   },
   {
     title: "Tokens",
     href: "/authentication",
     section: "Autenticação",
-    keywords: "getAuthToken setAuthToken clearAuthToken localStorage access_token",
+    keywords: "getAuthToken setAuthToken clearAuthToken localStorage access_token XSS HttpOnly",
   },
   {
     title: "Requests autenticadas",
     href: "/authenticated-requests",
     section: "Autenticação",
-    keywords: "Bearer Authorization noAuth 401",
+    keywords: "Bearer Authorization noAuth 401 credentials include",
   },
   {
     title: "Dispositivo",
     href: "/device",
     section: "Utilitários",
-    keywords: "Device-Type Device-Ip-Address android ios",
+    keywords: "Device-Type Device-Ip-Address android ios ipv4 ipv6 timeout",
   },
   {
     title: "Transformação de dados",
     href: "/helpers",
     section: "Utilitários",
-    keywords: "toCamelCase toSnakeCase ensureArray transformKeys",
+    keywords: "toCamelCase toSnakeCase ensureArray transformKeys prototype pollution",
   },
   {
     title: "API Reference",
     href: "/api-reference",
     section: "Referência",
-    keywords: "EasyAPIConsumer IRequestOptions IApi",
+    keywords: "EasyAPIConsumer IRequestOptions IApi ICacheEntry cache",
   },
   {
     title: "Erros",
@@ -176,7 +188,13 @@ export const searchIndex: SearchEntry[] = [
     title: "Exemplos",
     href: "/examples",
     section: "Referência",
-    keywords: "authApi login register logout",
+    keywords: "authApi login register logout cache credentials",
+  },
+  {
+    title: "Versão 1.3.0",
+    href: "/changelog",
+    section: "Projeto",
+    keywords: "changelog breaking credentials same-origin tipagem segurança",
   },
   {
     title: "Licença e créditos",

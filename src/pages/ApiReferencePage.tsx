@@ -7,10 +7,12 @@ export function ApiReferencePage() {
   return (
     <DocArticle
       title="API Reference"
-      description="Mapa da classe EasyAPIConsumer e dos tipos públicos."
+      description="Mapa da classe EasyAPIConsumer e dos tipos públicos da 1.3.0."
       toc={[
         { id: "classe", title: "EasyAPIConsumer" },
         { id: "iapi", title: "IApi" },
+        { id: "options", title: "IRequestOptions" },
+        { id: "cache-entry", title: "ICacheEntry" },
         { id: "exports", title: "Exports" },
       ]}
     >
@@ -37,12 +39,19 @@ export function ApiReferencePage() {
     getDeviceType(): DeviceType;
     getDeviceIpAddress(): Promise<string>;
   };
+  cache: {
+    clearAll(): void;
+  };
 
   constructor(config: { baseURL: string });
 }`}
       />
 
       <HeadingAnchor id="iapi">IApi</HeadingAnchor>
+      <p>
+        Os métodos aceitam <InlineCode>options?: IRequestOptions</InlineCode>. Na
+        1.3.0 o parâmetro deixou de ser <InlineCode>any</InlineCode>.
+      </p>
       <CodeBlock
         code={`interface IApi {
   get<T = unknown>(path: string, options?: IRequestOptions): Promise<T>;
@@ -53,12 +62,44 @@ export function ApiReferencePage() {
 }`}
       />
 
+      <HeadingAnchor id="options">IRequestOptions</HeadingAnchor>
+      <CodeBlock
+        filename="IRequestOptions.ts"
+        code={`interface IRequestOptions {
+  body?: unknown;
+  headers?: Record<string, string>;
+  signal?: AbortSignal;
+  timeout?: number;
+  auth?: boolean;
+  silent401?: boolean;
+  camelCase?: boolean;
+  bodyAsIs?: boolean;
+  skipSlashRetry?: boolean;
+  includesDeviceType?: boolean;
+  includesDeviceIpAddress?: boolean;
+  useCache?: boolean;
+  maxCacheAge?: number;
+  credentials?: RequestCredentials;
+}`}
+      />
+
+      <HeadingAnchor id="cache-entry">ICacheEntry</HeadingAnchor>
+      <CodeBlock
+        code={`interface ICacheEntry<T = unknown> {
+  data: T;
+  timestamp: number;
+  maxAge: number;
+}`}
+      />
+
       <HeadingAnchor id="exports">Exports</HeadingAnchor>
       <p>
         Além da classe, o pacote declara <InlineCode>createApi</InlineCode>,{" "}
-        <InlineCode>request</InlineCode>, os helpers de token e as funções de
-        transformação no <InlineCode>index.d.ts</InlineCode>. O caminho mais
-        estável para aplicação é instanciar <InlineCode>EasyAPIConsumer</InlineCode>.
+        <InlineCode>request</InlineCode>, os helpers de token, as funções de
+        transformação e <InlineCode>clearAllCacheEntries</InlineCode> no{" "}
+        <InlineCode>index.d.ts</InlineCode>. O caminho mais estável para aplicação
+        é instanciar <InlineCode>EasyAPIConsumer</InlineCode> e usar{" "}
+        <InlineCode>easyApi.cache.clearAll()</InlineCode>.
       </p>
     </DocArticle>
   );
